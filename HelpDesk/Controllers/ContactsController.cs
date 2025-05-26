@@ -1,16 +1,19 @@
 ﻿using HelpDesk.Models;
 using HelpDesk.Data;
 using Microsoft.AspNetCore.Mvc;
+using HelpDesk.Services;
 
 namespace HelpDesk.Controllers
 {
     public class ContactsController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly EmailService _emailService;
 
-        public ContactsController(AppDbContext context)
+        public ContactsController(AppDbContext context, EmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
 
         public IActionResult Index()
@@ -19,12 +22,34 @@ namespace HelpDesk.Controllers
         }
 
         [HttpPost]
-        public IActionResult Check(Contact contact)
+        public async Task<IActionResult> Check(Contact contact)
         {
+            var emailExists = _context.Emails.Any(e => e.Email == contact.Email);
+
+            if (!emailExists)
+            {
+                ModelState.AddModelError("Email", "Отправлять форму могут только зарегистрированные пользователи");
+                return View("Index", contact);
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Contacts.Add(contact);
                 _context.SaveChanges();
+
+                try
+                {
+                    string subject = "Ваша заявка принята";
+                    string body = $"Уважаемый {contact.Email},<br><br>" +
+                                 "Мы получили ваше сообщение:<br>" +
+                                 $"<blockquote>{contact.Message}</blockquote>" +
+                                 "<br>С уважением,<br>Команда Help Desk";
+
+                    await _emailService.SendEmailAsync(contact.Email, subject, body);
+                }
+                catch
+                {
+                }
 
                 return RedirectToAction("Success");
             }
