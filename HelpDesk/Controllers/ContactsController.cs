@@ -51,15 +51,10 @@ namespace HelpDesk.Controllers
                 {
                 }
 
-                return RedirectToAction("Success");
+                return RedirectToAction("Index", "Home");
             }
 
             return View("Index", contact);
-        }
-
-        public IActionResult Success()
-        {
-            return View();
         }
 
     }
