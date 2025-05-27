@@ -18,5 +18,27 @@
         @RenderBody()
     </main>
     <footer>Все права защищены</footer>
+
+    <script>
+        function showToast(message, type = 'error') {
+            const toast = document.getElementById('toast');
+            toast.className = `toast-notification toast-error`;
+            toast.querySelector('.toast-message').textContent = message;
+            toast.style.display = 'block';
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+    @if (TempData["ToastMessage"] != null)
+    {
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                showToast('@Html.Raw(TempData["ToastMessage"])', '@TempData["ToastType"]');
+            });
+        </script>
+    }
+
 </body>
 </html>

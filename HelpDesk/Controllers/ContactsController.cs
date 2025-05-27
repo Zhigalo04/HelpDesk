@@ -49,6 +49,8 @@ namespace HelpDesk.Controllers
                 }
                 catch
                 {
+                    TempData["ToastMessage"] = "Письмо не было отправлено на вашу почту";
+                    TempData["ToastType"] = "error";
                 }
 
                 return RedirectToAction("Index", "Home");
