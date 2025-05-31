@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDesk", "HelpDesk\HelpDesk.csproj", "{EEBF9612-DCC5-4553-BF0B-2ED4D1AA36B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpDesk", "HelpDesk\HelpDesk.csproj", "{EEBF9612-DCC5-4553-BF0B-2ED4D1AA36B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDesk.Tests", "HelpDesk.Tests\HelpDesk.Tests.csproj", "{10F43ABF-D549-4621-BF75-D543650AF2A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EEBF9612-DCC5-4553-BF0B-2ED4D1AA36B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEBF9612-DCC5-4553-BF0B-2ED4D1AA36B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEBF9612-DCC5-4553-BF0B-2ED4D1AA36B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10F43ABF-D549-4621-BF75-D543650AF2A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10F43ABF-D549-4621-BF75-D543650AF2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10F43ABF-D549-4621-BF75-D543650AF2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10F43ABF-D549-4621-BF75-D543650AF2A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
