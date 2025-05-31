@@ -51,6 +51,16 @@ namespace HelpDesk.Controllers
                 {
                     TempData["ToastMessage"] = "Письмо не было отправлено на вашу почту";
                     TempData["ToastType"] = "error";
+
+                    var queueItem = new Queue
+                    {
+                        Email = contact.Email,
+                        Message = contact.Message,
+                        CreatedAt = DateTime.Now
+                    };
+
+                    _context.Queue.Add(queueItem);
+                    await _context.SaveChangesAsync();
                 }
 
                 return RedirectToAction("Index", "Home");
